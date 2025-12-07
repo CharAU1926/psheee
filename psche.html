@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReCycle+ | Circular Economy Solution</title>
+    <!-- Google Fonts to match PDF aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            /* Colors extracted from PDF analysis */
+            --primary-green: #0E7356; /* The deep emerald green */
+            --primary-dark: #074a36;
+            --bg-beige: #F5F2E8; /* Recycled paper feel */
+            --text-dark: #2C3330;
+            --text-light: #666;
+            --accent-silver: #E0E0E0;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-beige);
+            color: var(--text-dark);
+            line-height: 1.6;
+            /* Subtle paper texture effect */
+            background-image: linear-gradient(var(--bg-beige), var(--bg-beige)), url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            overflow-x: hidden;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--primary-green);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--primary-green);
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            font-size: 1.1rem;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(14, 115, 86, 0.3);
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background-color: rgba(245, 242, 232, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0px rgba(14, 115, 86, 0.1);
+        }
+
+        /* --- PROBLEM SECTION --- */
+        .problem {
+            padding: 80px 0;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- SOLUTION / WHAT WE DO --- */
+        .solution {
+            padding: 80px 0;
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 50px; /* Pill shape */
+            border: 1px solid var(--primary-green);
+        }
+
+        .step-number {
+            background: var(--primary-green);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            flex-shrink: 0;
+        }
+
+        /* --- SHOWCASE --- */
+        .showcase {
+            padding: 80px 0;
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        .showcase h2 {
+            color: var(--white);
+        }
+        
+        .showcase .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* --- FOUNDERS --- */
+        .founders {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .founder-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .founder-card {
+            width: 250px;
+        }
+
+        .founder-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--primary-green);
+            background-color: #ddd; /* Placeholder color */
+        }
+
+        /* --- BOOKING FORM --- */
+        .booking {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+        }
+
+        .form-group input:focus {
+            outline: 2px solid var(--primary-green);
+            border-color: transparent;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content h2 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--bg-beige);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Nav -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Re<em>Cycle</em>+</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#solution">How it Works</a></li>
+                    <li><a href="#showcase">Products</a></li>
+                    <li><a href="#founders">Team</a></li>
+                </ul>
+                <a href="#pickup" class="btn">Request Pickup</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="hero-text">
+            <h1>Turning Waste Into <br><em>New Beginnings</em></h1>
+            <p>We collect small household waste and upcycle it into useful, cool items. Supporting the circular economy, one pickup at a time.</p>
+            <a href="#pickup" class="btn">Start Recycling Today</a>
+        </div>
+        <div class="hero-image">
+            <!-- Using a high quality eco-abstract placeholder image -->
+            <img src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sustainable Art Abstract">
+        </div>
+    </section>
+
+    <!-- Introduction / SDGs -->
+    <section id="about" class="container" style="padding: 60px 0; text-align: center;">
+        <h2 class="section-title">Why We Exist</h2>
+        <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
+            Motivated by <strong>SDG 8</strong> (Good Jobs) and <strong>SDG 12</strong> (Responsible Consumption), 
+            we wanted to contribute to a more circular economy in our local community. 
+            Small actions make a real, positive impact.
+        </p>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2 class="section-title">The Problem</h2>
+            <p class="section-subtitle">Why recycling is harder than it looks.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <i class="fa-regular fa-clock"></i>
+                    <h3>No Time</h3>
+                    <p>Many busy professionals simply don't have the time to sort and transport waste to recycling points.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-person-cane"></i>
+                    <h3>Accessibility</h3>
+                    <p>Elderly and disabled individuals often struggle to carry heavy waste bags to collection bins.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                    <h3>Wasted Potential</h3>
+                    <p>Small items end up in general trash instead of being reused, polluting ecosystems and water sources.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution / Process Section -->
+    <section id="solution" class="solution">
+        <div class="container">
+            <h2 class="section-title">Our Solution</h2>
+            <p class="section-subtitle">We handle the mess so you don't have to.</p>
+
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        <h3>Request a Pickup</h3>
+                        <p>Use our simple form to request a waste pickup from your home.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        <h3>We Collect</h3>
+                        <p>We pick up small waste like plastic, paper, and textiles directly from your door.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        <h3>We Upcycle</h3>
+                        <p>We turn trash into cool items like plant pots, jewelry, and keychains.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-text">
+                        <h3>You Give Back</h3>
+                        <p>Buy items back at a tiny price or donate them to charity. We take the rest to official Green Dots.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="showcase" class="showcase">
+        <div class="container">
+            <h2 class="section-title">From Waste to Wonder</h2>
+            <p class="section-subtitle">Examples of what your waste can become.</p>
+
+            <div class="gallery">
+                <div class="gallery-item">
+                    <!-- Placeholder: Upcycled Plant Pot -->
+                    <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Plant Pot">
+                    <div class="gallery-caption">Upcycled Plant Pots</div>
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder: Recycled Jewelry/Craft -->
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Jewelry">
+                    <div class="gallery-caption">Recycled Jewelry</div>
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder: Eco Decor -->
+                    <img src="https://images.unsplash.com/photo-1596140096663-b7d57b3b05bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Decor">
+                    <div class="gallery-caption">Home Décor</div>
+                </div>
+                <div class="gallery-item">
+                    <!-- Placeholder: Keychains/Plastic art -->
+                    <img src="https://images.unsplash.com/photo-1622542796254-5b9c46a3d462?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Plastic Art">
+                    <div class="gallery-caption">Custom Keychains</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section id="founders" class="founders container">
+        <h2 class="section-title">Presented By</h2>
+        <div class="founder-grid">
+            <div class="founder-card">
+                <!-- User to upload actual photo later. Using placeholder for now. -->
+                <img src="https://placehold.co/150x150/0E7356/FFFFFF?text=Chariton" alt="Chariton" class="founder-img">
+                <h3>Chariton</h3>
+                <p>Co-Founder</p>
+            </div>
+            <div class="founder-card">
+                <img src="https://placehold.co/150x150/0E7356/FFFFFF?text=Gerasimos" alt="Gerasimos" class="founder-img">
+                <h3>Gerasimos</h3>
+                <p>Co-Founder</p>
+            </div>
+            <div class="founder-card">
+                <img src="https://placehold.co/150x150/0E7356/FFFFFF?text=Constantinos" alt="Constantinos" class="founder-img">
+                <h3>Constantinos</h3>
+                <p>Co-Founder</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="pickup" class="booking">
+        <div class="container">
+            <h2 class="section-title">Schedule a Pickup</h2>
+            <p class="section-subtitle">Fill out the form below and we'll collect your recyclable items.</p>
+            
+            <div class="form-container">
+                <form id="pickupForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Pickup Address</label>
+                        <input type="text" id="address" required placeholder="Street, City, Zip">
+                    </div>
+                    <div class="form-group">
+                        <label for="waste-type">Type of Waste</label>
+                        <select id="waste-type">
+                            <option value="plastic">Small Plastics</option>
+                            <option value="paper">Paper/Cardboard</option>
+                            <option value="textiles">Textiles/Fabrics</option>
+                            <option value="mixed">Mixed Small Waste</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Additional Notes</label>
+                        <textarea id="notes" rows="4" placeholder="Gate code, specific instructions, etc."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <h2 class="logo" style="color:white; font-size: 2rem;">Re<em>Cycle</em>+</h2>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+
+            <p>Reach out to us at <br> <strong>info@recycleplus.com</strong></p>
+            
+            <div class="copyright">
+                &copy; 2025 ReCycle+. All Rights Reserved. <br>
+                <small>Supporting the EU Circular Economy Action Plan</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form Submission Handler (Mock)
+        document.getElementById('pickupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get values to simulate processing
+            const name = document.getElementById('name').value;
+            const waste = document.getElementById('waste-type').value;
+
+            // Simple Alert to confirm action
+            alert(`Thank you, ${name}! We have received your request to pickup ${waste}. We will contact you shortly to confirm the time.`);
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
